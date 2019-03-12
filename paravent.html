@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Paravent</title>
+    <style>
+        body{
+            overflow-x: hidden;
+        }
+
+        nav{
+            width: 20vw;
+            margin: 15vw auto;
+            position: relative;
+        }
+
+        nav h2{
+            width: 100%;
+            text-align: center;
+            border: 1px solid black;
+            margin: 0;
+            background: red;
+        }
+
+        nav ul{
+            list-style: none;
+            padding-top: 0;
+            padding-left: 0;
+            margin-top: 0;
+            width: 100%;
+        }
+
+        nav ul li{
+            background: orange;
+            text-align: center;
+            border: 1px solid black;
+            width: 100%;
+            position: relative;
+            left: -800px;
+            height: 0;
+            transform: skewY(90deg);
+        }
+
+        /* nav div.cache{
+            width: 21vw;
+            height: 200px;
+            position: absolute;
+            top: 29px;
+            left: 0px;
+            background: white;
+            transform-origin: top;
+        }
+
+        nav:hover h2{ 
+            transform: translateZ(100px);
+        }
+
+        nav:hover div.cache{
+            animation: unfold 0.5s steps(10, start) forwards;
+        } */
+
+        nav:hover ul li{
+            left: 0;
+            height: 100%;
+            animation: skew 1s steps(10, start) forwards;
+        }
+
+        @keyframes skew{
+            100%{
+                transform: skewY(0deg);
+            }
+        }
+
+        @keyframes unfold{
+            100%{
+                height: 0;
+            }
+        }
+
+        @keyframes flipInX {
+            from {
+                -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+                transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+                opacity: 0;
+            }
+
+            40% {
+                -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+                transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+
+            60% {
+                -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+                transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+                opacity: 1;
+            }
+
+            80% {
+                -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+                transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+            }
+
+            to {
+                -webkit-transform: perspective(400px);
+                transform: perspective(400px);
+            }
+        }
+
+        .flipInX {
+            -webkit-backface-visibility: visible !important;
+            backface-visibility: visible !important;
+            -webkit-animation-name: flipInX;
+            animation-name: flipInX;
+        }
+
+        main div{
+            background: black;
+            color: white;
+            position: absolute;
+            top: 18vh;
+            left: -5vw;
+            padding: 20px;
+            border-radius: 25px;
+            animation: pass-by 7s infinite;
+            text-transform: uppercase;
+            z-index: 99;
+        }
+
+        main div:hover{
+            transform: translate3d(10px,10px,10px);
+        }
+
+        main {
+            z-index: 100;
+        }
+
+        @keyframes pass-by{
+            50%{
+                transform: translateX(150vw);
+            }
+        }
+
+        nav li:hover{
+            background: orangered;
+            transform: skewX(20deg) translateX(-3px);
+            width: 102%;
+        }
+
+        footer{
+            width: 100vw;
+            transform: translateX(-1vw);
+            margin-left: 0;
+            padding-left: 0;
+            position: absolute;
+            top: 30%;
+        }
+
+        footer .rail{
+            background: black;
+            width: 150vw;
+            height: 10px;
+            margin-left: 0;
+            padding-left: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        .rail:first-of-type{
+            top: 20px;
+        }
+
+        .rail:last-of-type{
+            bottom: 20px;
+        }
+
+        footer .plank{
+            background: brown;
+            height: 80px;
+            width: 10px;
+            margin: 5px;
+            transform: rotate(20deg);
+            z-index: 2;
+        }
+
+        footer{
+            transform: rotateZ(40deg);
+        }
+        
+        footer tr{
+            display: flex;
+        }
+
+        main{
+            transform: rotateZ(40deg);
+        }
+
+        header{
+            position: absolute;
+            bottom: -200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h2>Titre</h2>
+            <div class="cache"></div>
+            <ul>
+                <li class="flipInX"><a href="#/">A</a></li>
+                <li class="flipInX"><a href="#/">B</a></li>
+                <li class="flipInX"><a href="#/">C</a></li>
+                <li class="flipInX"><a href="#/">D</a></li>
+                <li class="flipInX"><a href="#/">E</a></li>
+                <li class="flipInX"><a href="#/">F</a></li>
+                <li class="flipInX"><a href="#/">G</a></li>
+                <li class="flipInX"><a href="#/">H</a></li>
+                <li class="flipInX"><a href="#/">I</a></li>
+                <li class="flipInX"><a href="#/">J</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>Gateau</div>
+    </main>
+    <footer>
+        <div class="rail"></div>
+        <table>
+            <tr>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+                <td class="plank"></td>
+            </tr>
+        </table>
+        <div class="rail"></div>
+    </footer>
+</body>
+</html>

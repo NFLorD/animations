@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train</title>
+    <style>
+        body{
+            overflow: hidden;
+            position: relative;
+        }
+        
+        header{
+            height: 500px;
+        }
+
+        main{
+            width: 110vw;
+            margin-top: 0vw;
+            transform: translateX(-5vw) skew(20deg, 0deg);
+            position: relative;
+        }
+
+        footer{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        table{
+            border-collapse: separate;
+        }
+
+        table tr{
+            display: flex;
+        }
+
+        .train{
+            position: relative;
+            background: black;
+            height: 170px;
+            width: 300px;
+            bottom: -350px;
+            z-index: 10;
+            transform: translateX(-25vw);
+        }
+
+        .train.moving{      
+            animation: pass-by 8s backwards;
+        }
+
+        @keyframes pass-by{
+            100%{
+                transform: translateX(150vw);
+            }
+        }
+        
+        .rail{
+            background: black;
+            height: 5px;
+            width: 110vw;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .rail:first-of-type{
+            top: 17px;
+        }
+
+        .rail:last-of-type{
+            bottom: 17px;
+        }
+
+        .plank{
+            background: brown;
+            height: 70px;
+            width: 8px;
+            margin: 5px;
+            transform: rotate(30deg);
+        }
+
+        .train::after{
+            content: "";
+            border: 40px black solid;
+            border-top: 150px black solid;
+            border-bottom: 30px black solid;
+            position: absolute;
+            top: -150px;
+            right: 10px;
+        }
+
+        .train::before{
+            content: "";
+            border: 100px black solid;
+            border-top: 250px black solid;
+            border-bottom: 50px black solid;
+            border-top-left-radius: 20px;
+            position: absolute;
+            top: -150px;
+            left: -100px;
+        }
+
+        .cabin{
+            position: absolute;
+            height: 120px;
+            width: 120px;
+            background: white;
+            top: -115px;
+            left: -60px;
+        }
+
+        .wheels{
+            display: flex;
+            position: absolute;
+            left: -85px;
+            bottom: -40px;
+        }
+
+        .wheel{
+            background: whitesmoke;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            position: relative;
+            margin-right: 100px;
+            z-index: 3;
+            animation: roll 2s linear infinite forwards;
+        }
+
+        @keyframes roll{
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        .wheel::before{
+            content: "";
+            border: 10px solid brown;
+            border-right: 140px solid brown;
+            border-radius: 5px;;
+            position: absolute;
+            left: 0px;
+            top: 65px;
+            z-index: 4;
+            transform: rotate(45deg);
+        }
+
+        .wheel::after{
+            content: "";
+            border: 10px solid brown;
+            border-left: 140px solid brown;
+            border-radius: 5px;;
+            position: absolute;
+            right: 0px;
+            top: 65px;
+            z-index: 4;
+            transform: rotate(-45deg);
+        }
+
+        .joint{
+            background: sandybrown;
+            height: 20px;
+            width: 300px;
+            border-radius: 20px;
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            z-index: 5;
+            margin-bottom: 70px;
+            animation: abc 1s infinite;
+        }
+
+        @keyframes abc{
+            0%{
+                transform: translate(0px, 0px);
+            }
+            10%{
+                transform: translate(40px, 5px);
+            }
+            20%{
+                transform: translate(60px, 25px);
+            }
+            30%{
+                transform: translate(65px, 45px);
+            }
+            40%{
+                transform: translate(65px, 60px);
+            }
+            50%{
+                transform: translate(60px, 75px);
+            }
+            60%{
+                transform: translate(55px, 85px);
+            }
+            70%{
+                transform: translate(25px, 105px);
+            }
+            80%{
+                transform: translate(0px, 85px);
+            }
+            90%{
+                transform: translate(-20px, 40px);
+            }
+            100%{
+                transform: translate(0px, 0px);
+            }
+        }
+
+        .joint::before{
+            content: "";
+            border: 5px black solid;
+            height: 1px;
+            width: 1px;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            border-radius: 50%;
+        }
+
+        .joint::after{
+            content: "";
+            border: 5px black solid;
+            height: 1px;
+            width: 1px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+            <div class="train moving">
+                <div class="cabin"></div>
+                <div class="wheels">
+                    <div class="joint"></div>
+                    <div class="wheel"></div>
+                    <div class="wheel"></div>
+                </div>
+            </div>
+    </header>
+    <main>
+            <div class="rail"></div>
+            <table>
+                <tr>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                    <td class="plank"></td>
+                </tr>
+            </table>
+            <div class="rail"></div>
+    </main>
+
+    <footer>
+        <button>Reset</button>
+    </footer>
+    <script>
+        document.querySelector("footer>button").addEventListener("click", function(){
+            document.querySelector("div.train").classList.remove("moving");
+            setTimeout(function(){
+                document.querySelector("div.train").classList.add("moving");
+            },1000);
+        });
+    </script>
+</body>
+</html>
